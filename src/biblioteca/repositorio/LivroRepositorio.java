@@ -64,7 +64,7 @@ public class LivroRepositorio extends Repositorio<Livro> {
      *         gênero
      */
     public Map<String, List<Livro>> agruparPorGenero() {
-        // TODO Exercício 3b
-        throw new UnsupportedOperationException("Não implementado — veja TODO Exercício 3b");
+        return buscarTodos().stream()
+                .collect(Collectors.groupingBy(Livro::getGenero));
     }
 }

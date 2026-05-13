@@ -85,8 +85,12 @@ public class RelatorioServico {
      * @return Map<Long, BigDecimal> de usuarioId → soma das multas pendentes
      */
     public Map<Long, BigDecimal> multasPendentesPorUsuario() {
-        // TODO Exercício 3d
-        throw new UnsupportedOperationException("Não implementado — veja TODO Exercício 3d");
+        return emprestimoRepo.buscarTodos().stream()
+                .filter(Emprestimo::estaAtrasado)
+                .collect(Collectors.toMap(
+                        Emprestimo::getUsuarioId,
+                        Emprestimo::calcularMulta,
+                        BigDecimal::add));
     }
 
     // -------------------------------------------------------------------------
